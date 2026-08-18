@@ -1,0 +1,52 @@
+@UserManagementAPI_HostAddress = http://localhost:5120
+@BearerToken = demo-token-123
+
+### Root endpoint
+GET {{UserManagementAPI_HostAddress}}/
+Accept: text/plain
+Authorization: Bearer {{BearerToken}}
+
+### Test exception middleware
+GET {{UserManagementAPI_HostAddress}}/throw
+Accept: application/json
+Authorization: Bearer {{BearerToken}}
+
+### Get all users
+GET {{UserManagementAPI_HostAddress}}/api/usercontrollers
+Accept: application/json
+Authorization: Bearer {{BearerToken}}
+
+### Get user by id
+GET {{UserManagementAPI_HostAddress}}/api/usercontrollers/1
+Accept: application/json
+Authorization: Bearer {{BearerToken}}
+
+### Create user
+POST {{UserManagementAPI_HostAddress}}/api/usercontrollers
+Content-Type: application/json
+Authorization: Bearer {{BearerToken}}
+
+{
+  "name": "Jane Doe",
+  "email": "jane@example.com"
+}
+
+### Update user
+PUT {{UserManagementAPI_HostAddress}}/api/usercontrollers/1
+Content-Type: application/json
+Authorization: Bearer {{BearerToken}}
+
+{
+  "name": "Alice Updated",
+  "email": "alice.updated@example.com"
+}
+
+### Delete user
+DELETE {{UserManagementAPI_HostAddress}}/api/usercontrollers/2
+Authorization: Bearer {{BearerToken}}
+
+### Unauthorized test endpoint (should return 401)
+GET {{UserManagementAPI_HostAddress}}/api/usercontrollers/999
+Accept: application/json
+
+###
